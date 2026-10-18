@@ -1,0 +1,57 @@
+/* Scoped from the read-only Arinox Fusion reference. */
+/* Local experiment. Canonical Arinox tokens remain in vendor/arinox.css. */
+.ax-theme {
+  --fx-radius-control: 11px;
+  --fx-radius-popover: 16px;
+  --fx-radius-panel: 20px;
+  --fx-radius-glass: 24px;
+  --fx-glass-fill: rgb(255 254 250 / .72);
+  --fx-glass-rim: rgb(255 255 255 / .94);
+  --fx-glass-sheen: rgb(255 255 255 / .7);
+  --fx-glass-bottom: rgb(92 80 57 / .08);
+  --fx-glass-shadow: 0 8px 32px -16px rgb(53 45 33 / .22), 0 1px 3px rgb(53 45 33 / .04);
+  --fx-glass-blur: 22px;
+  --fx-glass-solid: #fbf9f4;
+  --fx-paper: #fffefb;
+  --fx-paper-inset: #f6f3ed;
+  --fx-preview-paper: #ece8df;
+  --fx-preview-ink: #383c3a;
+  --fx-preview-blue: #c2dde9;
+  --fx-preview-clay: #dbbba3;
+  --fx-preview-sage: #c5cebc;
+  --fx-horizon: rgb(156 199 218 / .2);
+  --fx-scrollbar: #b8b4ad;
+}
+.ax-theme[data-theme='night'] {
+  --fx-glass-fill: rgb(26 32 44 / .78);
+  --fx-glass-rim: rgb(221 235 255 / .18);
+  --fx-glass-sheen: rgb(232 242 255 / .09);
+  --fx-glass-bottom: rgb(0 0 0 / .3);
+  --fx-glass-shadow: 0 16px 40px -20px rgb(0 0 0 / .65), 0 1px 4px rgb(0 0 0 / .15);
+  --fx-glass-solid: #191f2a;
+  --fx-paper: #10151e;
+  --fx-paper-inset: #151b26;
+  --fx-preview-paper: #303a44;
+  --fx-preview-ink: #e0e7e4;
+  --fx-preview-blue: #355567;
+  --fx-preview-clay: #6c5549;
+  --fx-preview-sage: #495c50;
+  --fx-horizon: rgb(98 159 192 / .11);
+  --fx-scrollbar: #465164;
+}
+:where(.ax-theme) .glass {
+  background: linear-gradient(135deg, var(--fx-glass-sheen), transparent 42%), var(--fx-glass-fill);
+  border: 1px solid var(--fx-glass-rim);
+  box-shadow: inset 0 1px 0 var(--fx-glass-rim), inset 0 -1px 0 var(--fx-glass-bottom), var(--fx-glass-shadow);
+  -webkit-backdrop-filter: blur(var(--fx-glass-blur)) saturate(1.25);
+  backdrop-filter: blur(var(--fx-glass-blur)) saturate(1.25);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  :where(.ax-theme) .glass { background: var(--fx-glass-solid); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :where(.ax-theme) .glass { background: var(--fx-glass-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (forced-colors: active) {
+  :where(.ax-theme) .glass { background: Canvas; color: CanvasText; border: 1px solid CanvasText; box-shadow: none; }
+}

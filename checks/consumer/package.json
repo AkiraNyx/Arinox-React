@@ -1,0 +1,14 @@
+{
+  "name": "arinox-external-consumer-check",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@arinox/react": "file:../arinox-react-0.1.0.tgz",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  }
+}

@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
+const {chromium}=require('C:/Users/AkiraNyx/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+(async()=>{
+  const base=process.argv[2];assert.ok(base);const origin=new URL(base).origin;
+  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});const results=[],errors=[];
+  const state={version:1,theme:'night',view:'list',note:'从旧结构载入的笔记',todos:[false,true,true],projects:[{id:'legacy-record',title:'原有记录',description:'保留结构',category:'灵感收集',status:'done',favorite:true,updated:1792180800000,art:'paper',existingProjectExtra:'preserve'}],existingExtra:'preserve'};
+  const raw=JSON.stringify(state);
+  async function seeded(value){const context=await browser.newContext({viewport:{width:1440,height:1100},storageState:{cookies:[],origins:[{origin,localStorage:[{name:'arinox-fusion-v1',value},{name:'sentinel',value:'preserve'}]}]}});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});await page.goto(base);await page.locator('#projects').waitFor();return{context,page};}
+  try{
+    const {context,page}=await seeded(raw);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('arinox-fusion-v1')),raw);assert.equal(await page.locator('#desk-note').inputValue(),state.note);assert.equal(await page.locator('#projects').getAttribute('data-layout'),'list');results.push('legacy-schema-no-write-on-mount');
+    await page.locator('#desk-note').fill('离开前立即保存的笔记');assert.equal(await page.locator('#note-status').textContent(),'正在记录…');
+    const navigation=page.waitForURL(new URL('showcase.html',base).href);await page.evaluate(()=>location.assign('showcase.html'));await navigation;await page.locator('.showcase-page').waitFor();
+    const flushed=await page.evaluate(()=>JSON.parse(localStorage.getItem('arinox-fusion-v1')));assert.equal(flushed.note,'离开前立即保存的笔记');assert.deepEqual(flushed.projects,state.projects);assert.equal(flushed.existingExtra,'preserve');assert.equal(await page.evaluate(()=>localStorage.getItem('sentinel')),'preserve');results.push('pending-note-flushed-on-real-navigation-without-migration');
+    await page.goto(base);await page.locator('#projects').waitFor();await page.locator('#new-project').click();await page.locator('input[name="title"]').fill('连续提交只创建一次');
+    await page.locator('#project-form').evaluate(form=>{for(let index=0;index<6;index++)form.requestSubmit();});await page.waitForFunction(()=>!document.getElementById('project-dialog'));
+    const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('arinox-fusion-v1')));assert.equal(after.projects.length,2);assert.equal(after.projects.filter(project=>project.title==='连续提交只创建一次').length,1);assert.equal(after.version,1);assert.deepEqual(after.projects.find(project=>project.id==='legacy-record'),state.projects[0]);results.push('rapid-submit-is-single-write-compatible-record');
+    await page.evaluate(()=>{for(let index=0;index<7;index++)document.getElementById('theme-toggle').click();});await page.waitForFunction(()=>document.documentElement.dataset.theme==='day');assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('arinox-fusion-v1')).theme),'day');results.push('rapid-state-actions-preserve-last-value');
+    await page.locator('[data-open="legacy-record"]').click();await page.locator('textarea[name="description"]').fill('只修改已知字段');await page.getByRole('button',{name:'保存项目',exact:true}).click();await page.waitForFunction(()=>!document.getElementById('project-dialog'));const edited=await page.evaluate(()=>JSON.parse(localStorage.getItem('arinox-fusion-v1')).projects.find(project=>project.id==='legacy-record'));assert.equal(edited.existingProjectExtra,'preserve');assert.equal(edited.description,'只修改已知字段');results.push('edit-preserves-existing-project-extension-fields');await context.close();
+    const badRaw='{"version":2,"note":"must not overwrite"}';const bad=await seeded(badRaw);await bad.page.locator('[data-view="list"]').click();assert.equal(await bad.page.evaluate(()=>localStorage.getItem('arinox-fusion-v1')),badRaw);assert.match(await bad.page.locator('#toast').textContent(),/原记录未覆盖/);await bad.context.close();results.push('unknown-version-protected-during-user-actions');
+    assert.deepEqual(errors,[]);fs.writeFileSync(path.join(__dirname,'flow-results.json'),JSON.stringify({checks:results.length,results,errors},null,2));console.log('PASS application flows '+results.length);
+  }finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

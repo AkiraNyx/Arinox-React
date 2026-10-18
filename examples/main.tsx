@@ -1,0 +1,13 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import '@arinox/react/styles.css';
+import './site.css';
+import './reference-ui.css';
+import './workbench/workbench.css';
+import './showcase/showcase.css';
+import { Foundation } from './Foundation.js';
+import { MotionLab } from './MotionLab.js';
+import { Workspace } from './workbench/Workspace.js';
+import { Showcase } from './showcase/Showcase.js';
+const example=location.pathname.endsWith('checks.html') ? location.search.includes('motion') ? <MotionLab/> : <Foundation/> : location.pathname.endsWith('showcase.html') ? <Showcase/> : <Workspace/>;
+createRoot(document.getElementById('root')!).render(<StrictMode>{example}</StrictMode>);

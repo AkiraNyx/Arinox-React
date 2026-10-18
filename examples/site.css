@@ -1,0 +1,15 @@
+body { margin: 0; }
+.foundation { min-height: 100vh; padding: 32px; background: var(--ax-color-bg-default); }
+.foundation > .ax-stack { max-width: 900px; margin: auto; }
+.foundation h1 { font: 500 32px/1.5 var(--ax-font-family-display); }
+.foundation label { display: grid; gap: 8px; }
+.foundation label.ax-choice { display: flex; }
+.foundation-glass { padding: 24px; border-radius: var(--fx-radius-glass); }
+.lab-layout { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.lab-layout[data-mode='list'] { grid-template-columns: 1fr; }
+.app-sandbox .brand-mark { display: block; background: currentColor; mask: url('../src/assets/arinox-logo.svg') center / contain no-repeat; }
+.workspace-page .view-toggle::before, .workspace-page .filter-row::after { content: none; }
+.workspace-page .filter-row.ax-segmented { background: transparent; border: 0; border-bottom: 1px solid var(--ax-color-border-default); padding: 0 0 13px; gap: 20px; border-radius: 0; }
+.workspace-page #desk-note.ax-input { border: 0; box-shadow: none; background: transparent; padding: 0; border-radius: 0; min-height: 160px; }
+.workspace-page .project-card { height: 100%; }
+@media(max-width:550px) { .foundation { padding: 16px; } }

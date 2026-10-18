@@ -1,0 +1,12 @@
+import { useRef, useState } from 'react';
+import { Button, Card, Checkbox, Field, Glass, Icon, Inline, Input, Select, Stack, Switch, Textarea, Theme } from '@arinox/react';
+import type { ThemeName } from '@arinox/react';
+
+export function Foundation() {
+  const [theme, setTheme] = useState<ThemeName>('day');
+  const [name, setName] = useState('受控名称');
+  const [checked, setChecked] = useState(false);
+  const input = useRef<HTMLInputElement>(null);
+  const checkbox = useRef<HTMLInputElement>(null);
+  return <><button id="host-button">宿主按钮（库样式之外）</button><Theme theme={theme} className="foundation"><Stack gap={6}><h1>Arinox React · 组件基础</h1><Inline><Button id="theme" onClick={() => setTheme(theme === 'day' ? 'night' : 'day')}>切换昼夜</Button><Button id="focus-ref" onClick={() => input.current?.focus()}>通过 ref 聚焦</Button><Button id="check-ref" onClick={() => checkbox.current?.focus()}>聚焦复选框</Button></Inline><Card><Inline><Button variant="primary">主要操作</Button><Button>中性操作</Button><Button variant="ghost">轻量操作</Button><Button variant="danger">危险样式</Button><Button disabled>不可用</Button><Button loading>加载状态</Button><Button aria-label="新增"><Icon name="plus" /></Button></Inline></Card><Card><Stack><Field label="受控输入" htmlFor="controlled" hint="输入后由 React 更新" ><Input id="controlled" ref={input} value={name} onChange={event => setName(event.target.value)} aria-describedby="controlled-help" /></Field><label>非受控输入<Input id="uncontrolled" defaultValue="默认名称" /></label><Field label="错误输入" htmlFor="invalid" error="请检查这个名称"><Input id="invalid" invalid defaultValue="x" aria-describedby="invalid-help" /></Field><label>只读<Input id="readonly" readOnly value="可以复制" /></label><label>禁用<Input id="disabled" disabled defaultValue="不可编辑" /></label><label>说明<Textarea id="textarea" defaultValue="多行文字" /></label><label>集合<Select id="select" defaultValue="灵感收集"><option>设计系统</option><option>灵感收集</option><option>工具界面</option></Select></label><label>不可用选择<Select disabled><option>暂不可用</option></Select></label><Inline><label className="ax-choice"><Checkbox ref={checkbox} id="controlled-check" checked={checked} onChange={event => setChecked(event.target.checked)} />受控</label><label className="ax-choice"><Checkbox id="partial" indeterminate />半选</label><label className="ax-choice"><Checkbox defaultChecked disabled />禁用</label><label className="ax-choice"><Switch id="switch" defaultChecked />专注模式</label></Inline></Stack></Card><Glass className="foundation-glass">玻璃操作层 · 离线字体与图标</Glass><p id="controlled-result">{name} / {String(checked)}</p></Stack></Theme></>;
+}

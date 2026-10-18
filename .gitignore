@@ -1,0 +1,12 @@
+node_modules/
+lib/
+dist/
+*.tgz
+*.log
+.env
+.env.*
+!.env.example
+checks/*.png
+checks/*.json
+checks/consumer/package-lock.json
+checks/source-verification/

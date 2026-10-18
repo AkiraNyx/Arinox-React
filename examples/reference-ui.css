@@ -1,0 +1,38 @@
+.app-sandbox { --ax-radius-md: var(--fx-radius-control); --ax-radius-lg: var(--fx-radius-panel); view-transition-name: none; }
+.app-sandbox[data-theme='day'] { color-scheme: light; }
+.app-sandbox[data-theme='night'] { color-scheme: dark; }
+:where(.app-sandbox) * { box-sizing: border-box; }
+:where(.app-sandbox) [hidden] { display: none !important; }
+:where(.app-sandbox) button, :where(.app-sandbox) input, :where(.app-sandbox) textarea, :where(.app-sandbox) select { font: inherit; }
+:where(.app-sandbox) button { cursor: pointer; }
+:where(.app-sandbox) button, :where(.app-sandbox) a, :where(.app-sandbox) input, :where(.app-sandbox) textarea, :where(.app-sandbox) select { -webkit-tap-highlight-color: transparent; }
+:where(.app-sandbox) textarea { resize: vertical; }
+:where(.app-sandbox) a:focus-visible, :where(.app-sandbox) input:not(.ax-input):not(.ax-checkbox):not(.ax-radio):not(.ax-switch):focus-visible, :where(.app-sandbox) select:not(.ax-input):focus-visible, :where(.app-sandbox) textarea:not(.ax-input):focus-visible { outline: 2px solid var(--ax-color-accent-default); outline-offset: 4px; }
+:where(.app-sandbox) .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+:where(.app-sandbox) .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+:where(.app-sandbox) .skip-link { position: fixed; left: 20px; top: -70px; z-index: 200; padding: 12px 20px; background: var(--fx-paper); color: var(--ax-color-text-default); border-radius: var(--fx-radius-control); }
+:where(.app-sandbox) .skip-link:focus { top: 16px; }
+:where(.app-sandbox) .icon-button { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 9px; background: transparent; color: var(--ax-color-text-muted); transition: background-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard); }
+:where(.app-sandbox) .icon-button:hover { background: var(--ax-color-state-hover); color: var(--ax-color-text-default); }
+:where(.app-sandbox) .icon-button .icon { width: 17px; height: 17px; }
+:where(.app-sandbox) .theme-button { border-radius: 50%; }
+:where(.app-sandbox) .eyebrow { color: var(--ax-color-text-muted); font: 10px/1.5 var(--ax-font-family-mono); letter-spacing: .12em; margin: 0 0 12px; }
+:where(.app-sandbox) .indicator-ready::before, :where(.app-sandbox) .indicator-ready::after { transition: transform var(--ax-motion-duration-base) var(--ax-motion-easing-standard), width var(--ax-motion-duration-base) var(--ax-motion-easing-standard), height var(--ax-motion-duration-base) var(--ax-motion-easing-standard); }
+:where(.app-sandbox) .dialog-heading { display: flex; gap: 12px; align-items: start; justify-content: space-between; }
+:where(.app-sandbox) .dialog-heading .eyebrow { margin: 0 0 10px; font-size: 9px; }
+:where(.app-sandbox) .dialog-heading h2 { font: 500 28px/1.5 var(--ax-font-family-display); letter-spacing: -.03em; margin: 0; }
+:where(.app-sandbox) .dialog-description { color: var(--ax-color-text-muted); font-size: 12px; margin: 8px 0 24px; }
+:where(.app-sandbox) .form-fields { display: grid; gap: 18px; }
+:where(.app-sandbox) .form-field { display: grid; gap: 8px; min-width: 0; }
+:where(.app-sandbox) .form-field > span { font-size: 12px; color: var(--ax-color-text-muted); }
+:where(.app-sandbox) .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+:where(.app-sandbox) .favorite-check { display: flex; gap: 9px; align-items: start; font-size: 12px; min-height: 24px; cursor: pointer; }
+:where(.app-sandbox) .dialog-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--ax-color-border-default); padding-top: 20px; margin-top: 22px; }
+:where(.app-sandbox) .dialog-hint { font-size: 10px; color: var(--ax-color-text-muted); }
+:where(.app-sandbox) .dialog-footer > div { display: flex; gap: 8px; }
+:where(.app-sandbox) .icon-button:active { transform: scale(.94); }
+@media (prefers-reduced-motion: reduce) { :where(.app-sandbox) *, :where(.app-sandbox) *::before, :where(.app-sandbox) *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+@media (max-width: 550px) { :where(.app-sandbox) .dialog-heading h2 { font-size: 25px; } :where(.app-sandbox) .dialog-footer { gap: 14px; } :where(.app-sandbox) .dialog-hint { width: 100%; } :where(.app-sandbox) .dialog-footer > div { width: 100%; justify-content: flex-end; } }
+@media (max-width: 359px) { :where(.app-sandbox) .form-row { grid-template-columns: 1fr; } }
+@media (pointer: coarse) { :where(.app-sandbox) .icon-button { min-width: 44px; min-height: 44px; } :where(.app-sandbox) .favorite-check, :where(.app-sandbox) .ax-choice { min-height: 44px; } }
+:where(.app-sandbox) .icon-button { transition-property: background-color, color, transform; }

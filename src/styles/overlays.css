@@ -1,0 +1,24 @@
+:where(.ax-theme) .ax-menu { position: fixed; z-index: 80; width: 190px; max-width: calc(100vw - 16px); max-height: calc(100dvh - 16px); overflow: auto; padding: 6px; border-radius: var(--fx-radius-popover); color: var(--ax-color-text-default); }
+:where(.ax-theme) .ax-menu[popover] { margin: 0; inset: auto; }
+:where(.ax-theme) .ax-menuitem { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px; border: 0; border-radius: 10px; background: transparent; color: inherit; text-align: left; font: 12px/1.5 var(--ax-font-family-sans); cursor: pointer; }
+:where(.ax-theme) .ax-menuitem:hover, :where(.ax-theme) .ax-menuitem:focus-visible { background: var(--ax-color-state-selected); }
+:where(.ax-theme) .ax-menuitem:disabled, :where(.ax-theme) .ax-menuitem[aria-disabled='true'] { opacity: .45; cursor: not-allowed; background: transparent; }
+:where(.ax-theme) .ax-menuitem .ax-icon { width: 15px; height: 15px; color: var(--ax-color-text-muted); }
+:where(.ax-theme) .ax-dialog { width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 40px); overflow: auto; padding: 28px; border-radius: var(--fx-radius-glass); color: var(--ax-color-text-default); }
+:where(.ax-theme) .ax-dialog::backdrop { background: var(--ax-color-backdrop); backdrop-filter: blur(7px); opacity: 1; transition: opacity var(--ax-motion-duration-base) var(--ax-motion-easing-standard); }
+:where(.ax-theme) .ax-dialog[data-motion-state='closing']::backdrop { opacity: 0; }
+@starting-style { :where(.ax-theme) .ax-dialog[open]::backdrop { opacity: 0; } }
+:where(.ax-theme) .ax-dialog h2 { font: 500 28px/1.5 var(--ax-font-family-display); margin: 0; letter-spacing: -.03em; }
+:where(.ax-theme) .ax-tabs { min-width: 0; }
+:where(.ax-theme) .ax-tablist { position: relative; isolation: isolate; display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; padding: 4px; gap: 4px; border: 1px solid var(--ax-color-border-default); border-radius: var(--fx-radius-control); background: var(--ax-color-bg-subtle); }
+:where(.ax-theme) .ax-selection-indicator { position: absolute; z-index: -1; left: 0; top: 0; border-radius: 7px; background: var(--ax-color-surface-default); box-shadow: var(--ax-shadow-sm); pointer-events: none; }
+:where(.ax-theme) .ax-tablist [role='tab'] { border: 0; border-radius: 7px; padding: 8px 12px; background: transparent; color: var(--ax-color-text-muted); font: 13px/1.5 var(--ax-font-family-sans); min-height: 36px; cursor: pointer; }
+:where(.ax-theme) .ax-tablist [role='tab'][aria-selected='true'] { color: var(--ax-color-text-default); }
+:where(.ax-theme) .ax-tablist [role='tab']:disabled { opacity: .45; cursor: not-allowed; }
+:where(.ax-theme) .ax-tabpanel { padding-top: 24px; border-radius: var(--fx-radius-control); font-size: 13px; line-height: 1.8; }
+:where(.ax-theme) .ax-segmented { position: relative; isolation: isolate; display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; padding: 3px; gap: 4px; border: 1px solid var(--ax-color-border-default); border-radius: var(--fx-radius-control); background: var(--ax-color-bg-subtle); }
+:where(.ax-theme) .ax-segment { border: 0; background: transparent; color: var(--ax-color-text-muted); border-radius: 7px; }
+:where(.ax-theme) .ax-segment[aria-pressed='true'] { color: var(--ax-color-text-default); }
+:where(.ax-theme) .ax-segmented[data-indicator='underline'] .ax-selection-indicator { top: auto; bottom: -1px; background: var(--ax-color-text-default); box-shadow: none; border-radius: 2px; }
+@media(max-width:550px) { :where(.ax-theme) .ax-dialog { padding: 24px 20px; } :where(.ax-theme) .ax-dialog h2 { font-size: 25px; } }
+@media(pointer:coarse) { :where(.ax-theme) .ax-menuitem, :where(.ax-theme) .ax-tablist [role='tab'] { min-height: 44px; } }

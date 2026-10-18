@@ -1,0 +1,36 @@
+{
+  "name": "@arinox/react",
+  "version": "0.1.0",
+  "license": "GPL-3.0-only",
+  "author": "AkiraNyx",
+  "repository": { "type": "git", "url": "git+https://github.com/AkiraNyx/Arinox-React.git" },
+  "private": true,
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": { "types": "./lib/index.d.ts", "import": "./lib/index.js" },
+    "./styles.css": "./lib/styles/index.css"
+  },
+  "files": ["lib", "README.md", "LICENSE", "LICENSES.md"],
+  "sideEffects": ["**/*.css"],
+  "scripts": {
+    "build:lib": "tsc -p tsconfig.lib.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "npm run build:lib && npm run typecheck && vite build",
+    "dev": "npm run build:lib && vite --host 127.0.0.1 --port 5174 --strictPort",
+    "preview": "vite preview --host 127.0.0.1 --port 5175 --strictPort",
+    "check:protected": "node checks/protected.mjs"
+  },
+  "peerDependencies": { "react": ">=19.0.0 <20", "react-dom": ">=19.0.0 <20" },
+  "dependencies": { "animejs": "4.5.0" },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}

@@ -1,0 +1,517 @@
+/* Scoped from the read-only Arinox Fusion reference. */
+/**
+ * Arinox · 夜明
+ * 由 tokens/ 自动生成，请勿直接编辑。修改 token 后运行 npm run build。
+ */
+
+@layer arinox {
+
+/* ==== base ==== */
+/* 基础：引入 Arinox 后，页面默认就是"夜明"的样子 */
+
+.ax-theme { color-scheme: light; }
+.ax-theme[data-theme="night"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  .ax-theme:not([data-theme="day"]) { color-scheme: dark; }
+}
+
+.ax-theme {
+  margin: 0;
+  background: var(--ax-color-bg-default);
+  color: var(--ax-color-text-default);
+  font-family: var(--ax-font-family-sans);
+  font-size: var(--ax-font-size-base);
+  line-height: var(--ax-font-line-height-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(.ax-theme) ::selection { background: var(--ax-color-accent-subtle); color: var(--ax-color-text-default); }
+
+/* 键盘焦点：光环。鼠标点击时不显示 */
+:where(.ax-theme) :focus-visible { outline: 2px solid var(--ax-color-accent-default); outline-offset: 2px; }
+
+/* ---- 三种声音 ---- */
+:where(.ax-theme) .ax-display {
+  margin: 0;
+  font-family: var(--ax-font-family-display);
+  font-weight: var(--ax-font-weight-display);
+  font-size: var(--ax-font-size-xl);
+  letter-spacing: var(--ax-font-tracking-display);
+  line-height: var(--ax-font-line-height-tight);
+}
+:where(.ax-theme) .ax-display[data-size="lg"]  { font-size: var(--ax-font-size-lg); }
+:where(.ax-theme) .ax-display[data-size="2xl"] { font-size: var(--ax-font-size-2xl); }
+:where(.ax-theme) .ax-display[data-size="3xl"] { font-size: var(--ax-font-size-3xl); }
+
+:where(.ax-theme) .ax-mono {
+  font-family: var(--ax-font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+:where(.ax-theme) .ax-eyebrow {
+  font-family: var(--ax-font-family-mono);
+  font-size: var(--ax-font-size-xs);
+  letter-spacing: var(--ax-font-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ax-color-accent-text);
+}
+
+:where(.ax-theme) .ax-muted { color: var(--ax-color-text-muted); }
+:where(.ax-theme) .ax-subtle { color: var(--ax-color-text-subtle); }
+
+:where(.ax-theme) .ax-link {
+  color: var(--ax-color-accent-text);
+  font-weight: var(--ax-font-weight-medium);
+  text-decoration: none;
+}
+:where(.ax-theme) .ax-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 尊重"减少动态效果"的系统设置 */
+@media (prefers-reduced-motion: reduce) {
+  :where(.ax-theme) *, :where(.ax-theme) ::before, :where(.ax-theme) ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ==== button ==== */
+/*
+ * 按钮
+ *   <button class="ax-button">次要</button>
+ *   <button class="ax-button" data-variant="primary">主要</button>      ← 一屏最多一个
+ *   data-variant: primary | secondary（默认）| ghost | danger
+ *   data-size:    sm | md（默认）| lg
+ *   data-icon-only  只有图标的正方形按钮
+ *   aria-busy="true"  加载中
+ *   disabled / aria-disabled="true"  禁用
+ *
+ * 变体只修改下面的组件变量，不直接改属性。
+ */
+
+/* 把叠加色注册为颜色，渐变里的高亮才能平滑过渡。 */
+@property --arinox-overlay {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+:where(.ax-theme) .ax-button {
+  --_bg: var(--ax-color-surface-raised);
+  --_fg: var(--ax-color-text-default);
+  --_border: var(--ax-color-border-strong);
+  --_shadow: var(--ax-shadow-edge);
+  --arinox-overlay: transparent;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ax-space-2);
+  height: var(--ax-size-control-md);
+  padding: 0 var(--ax-space-4);
+  border: 1px solid var(--_border);
+  border-radius: var(--ax-radius-md);
+  background: linear-gradient(var(--arinox-overlay), var(--arinox-overlay)), var(--_bg);
+  color: var(--_fg);
+  box-shadow: var(--_shadow);
+  font: inherit;
+  font-weight: var(--ax-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    border-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    --arinox-overlay var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    box-shadow var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard);
+}
+
+:where(.ax-theme) .ax-button:hover  { --arinox-overlay: var(--ax-color-state-hover); }
+:where(.ax-theme) .ax-button:active { --arinox-overlay: var(--ax-color-state-selected); }
+:where(.ax-theme) .ax-button:focus-visible {
+  outline: none;
+  box-shadow: var(--_shadow), 0 0 0 3px var(--ax-color-focus-ring), var(--ax-shadow-lit);
+}
+
+/* ---- 变体 ---- */
+:where(.ax-theme) .ax-button[data-variant="primary"] {
+  --_bg: var(--ax-color-accent-default);
+  --_fg: var(--ax-color-accent-fg);
+  --_border: var(--_bg);
+  --_shadow: var(--ax-shadow-glow);
+}
+:where(.ax-theme) .ax-button[data-variant="primary"]:hover { --_bg: var(--ax-color-accent-hover); --arinox-overlay: transparent; }
+
+:where(.ax-theme) .ax-button[data-variant="ghost"] {
+  --_bg: transparent;
+  --_fg: var(--ax-color-text-muted);
+  --_border: transparent;
+  --_shadow: 0 0 0 0 transparent;
+}
+:where(.ax-theme) .ax-button[data-variant="ghost"]:hover { --_fg: var(--ax-color-text-default); }
+
+:where(.ax-theme) .ax-button[data-variant="danger"] {
+  --_bg: var(--ax-color-danger);
+  --_fg: var(--ax-color-danger-fg);
+  --_border: var(--_bg);
+  --_shadow: var(--ax-shadow-sm);
+}
+
+/* ---- 尺寸 ---- */
+:where(.ax-theme) .ax-button[data-size="sm"] {
+  height: var(--ax-size-control-sm);
+  padding: 0 var(--ax-space-2);
+  gap: var(--ax-space-1);
+  font-size: var(--ax-font-size-sm);
+}
+:where(.ax-theme) .ax-button[data-size="lg"] {
+  height: var(--ax-size-control-lg);
+  padding: 0 var(--ax-space-5);
+  font-size: var(--ax-font-size-md);
+}
+:where(.ax-theme) .ax-button[data-icon-only] { padding: 0; aspect-ratio: 1; }
+
+/* ---- 状态 ---- */
+:where(.ax-theme) .ax-button:disabled,
+:where(.ax-theme) .ax-button[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 加载中：文字隐藏但保留宽度，避免按钮跳动 */
+:where(.ax-theme) .ax-button[aria-busy="true"] {
+  color: transparent;
+  pointer-events: none;
+}
+:where(.ax-theme) .ax-button[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--_fg);
+  border-right-color: transparent;
+  border-radius: var(--ax-radius-full);
+  animation: ax-spin 0.7s linear infinite;
+}
+@keyframes ax-spin { to { transform: rotate(360deg); } }
+
+/* ==== field ==== */
+/*
+ * 表单字段
+ *   <div class="ax-field">
+ *     <label class="ax-label" for="name">项目名称</label>
+ *     <input class="ax-input" id="name">
+ *     <p class="ax-help">说明文字</p>
+ *   </div>
+ *
+ *   .ax-input 可用于 <input>、<textarea>、<select>
+ *   aria-invalid="true"  出错（同时让 .ax-help 变成错误提示）
+ */
+
+:where(.ax-theme) .ax-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ax-space-1);
+}
+
+:where(.ax-theme) .ax-label {
+  font-size: var(--ax-font-size-sm);
+  font-weight: var(--ax-font-weight-medium);
+  color: var(--ax-color-text-default);
+}
+
+:where(.ax-theme) .ax-help {
+  margin: 0;
+  font-size: var(--ax-font-size-xs);
+  color: var(--ax-color-text-subtle);
+}
+:where(.ax-theme) .ax-field:has([aria-invalid="true"]) .ax-help { color: var(--ax-color-danger); }
+
+:where(.ax-theme) .ax-input {
+  width: 100%;
+  height: var(--ax-size-control-md);
+  padding: 0 var(--ax-space-3);
+  border: 1px solid var(--ax-color-border-strong);
+  border-radius: var(--ax-radius-md);
+  background-color: var(--ax-color-surface-default);
+  color: var(--ax-color-text-default);
+  font: inherit;
+  outline: none;
+  transition:
+    border-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    box-shadow var(--ax-motion-duration-fast) var(--ax-motion-easing-standard);
+}
+:where(.ax-theme) .ax-input::placeholder { color: var(--ax-color-text-subtle); }
+
+:where(.ax-theme) .ax-input:focus {
+  border-color: var(--ax-color-accent-default);
+  box-shadow: 0 0 0 3px var(--ax-color-focus-ring), var(--ax-shadow-lit);
+}
+
+:where(.ax-theme) .ax-input[aria-invalid="true"] { border-color: var(--ax-color-danger); }
+
+:where(.ax-theme) .ax-input:disabled {
+  background-color: var(--ax-color-bg-subtle);
+  color: var(--ax-color-text-subtle);
+  cursor: not-allowed;
+}
+
+:where(.ax-theme) textarea.ax-input {
+  height: auto;
+  min-height: 80px;
+  padding: var(--ax-space-2) var(--ax-space-3);
+  line-height: var(--ax-font-line-height-relaxed);
+  resize: vertical;
+}
+
+/* 下拉箭头用两个渐变三角形拼成，颜色跟随 token */
+:where(.ax-theme) select.ax-input {
+  appearance: none;
+  padding-right: var(--ax-space-8);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ax-color-text-muted) 50%),
+    linear-gradient(135deg, var(--ax-color-text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* ==== choice ==== */
+/*
+ * 选择控件：都使用原生 <input>，保留键盘操作和读屏支持
+ *   <label class="ax-choice"><input type="checkbox" class="ax-checkbox"> 文字</label>
+ *   <label class="ax-choice"><input type="radio" class="ax-radio" name="x"> 文字</label>
+ *   <label class="ax-choice"><input type="checkbox" role="switch" class="ax-switch"> 文字</label>
+ */
+
+:where(.ax-theme) .ax-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ax-space-2);
+  cursor: pointer;
+}
+:where(.ax-theme) .ax-choice:has(:disabled) { color: var(--ax-color-text-subtle); cursor: not-allowed; }
+
+/* ---- 复选框与单选框 ---- */
+:where(.ax-theme) .ax-checkbox,
+:where(.ax-theme) .ax-radio {
+  appearance: none;
+  flex: none;
+  display: inline-grid;
+  place-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 1px solid var(--ax-color-border-strong);
+  border-radius: var(--ax-radius-sm);
+  background: var(--ax-color-surface-default);
+  cursor: inherit;
+  transition:
+    background-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard),
+    border-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard);
+}
+:where(.ax-theme) .ax-radio { border-radius: var(--ax-radius-full); }
+
+:where(.ax-theme) .ax-checkbox::before,
+:where(.ax-theme) .ax-radio::before {
+  content: "";
+  background: var(--ax-color-accent-fg);
+  transform: scale(0);
+  transition: transform var(--ax-motion-duration-fast) var(--ax-motion-easing-enter);
+}
+:where(.ax-theme) .ax-checkbox::before {
+  width: 10px;
+  height: 10px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+:where(.ax-theme) .ax-radio::before {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ax-radius-full);
+}
+
+:where(.ax-theme) .ax-checkbox:is(:checked, :indeterminate), :where(.ax-theme) .ax-radio:checked {
+  background: var(--ax-color-accent-default);
+  border-color: var(--ax-color-accent-default);
+}
+:where(.ax-theme) .ax-checkbox:is(:checked, :indeterminate)::before, :where(.ax-theme) .ax-radio:checked::before { transform: scale(1); }
+:where(.ax-theme) .ax-checkbox:indeterminate::before { clip-path: none; width: 8px; height: 2px; }
+
+/* ---- 开关 ---- */
+:where(.ax-theme) .ax-switch {
+  appearance: none;
+  flex: none;
+  position: relative;
+  width: 30px;
+  height: 18px;
+  margin: 0;
+  border-radius: var(--ax-radius-full);
+  background: var(--ax-color-control-track);
+  cursor: inherit;
+  transition: background-color var(--ax-motion-duration-base) var(--ax-motion-easing-standard);
+}
+:where(.ax-theme) .ax-switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--ax-radius-full);
+  background: var(--ax-color-control-thumb);
+  box-shadow: var(--ax-shadow-sm);
+  transition:
+    transform var(--ax-motion-duration-base) var(--ax-motion-easing-standard),
+    background-color var(--ax-motion-duration-base) var(--ax-motion-easing-standard);
+}
+:where(.ax-theme) .ax-switch:checked { background: var(--ax-color-accent-default); }
+:where(.ax-theme) .ax-switch:checked::before { transform: translateX(12px); background: var(--ax-color-accent-fg); }
+
+/* ---- 共同状态 ---- */
+:where(.ax-theme) :is(.ax-checkbox, .ax-radio, .ax-switch):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ax-color-focus-ring), var(--ax-shadow-lit);
+}
+:where(.ax-theme) :is(.ax-checkbox, .ax-radio, .ax-switch):disabled { opacity: 0.45; }
+
+/* ==== badge ==== */
+/*
+ * 徽标
+ *   <span class="ax-badge">草稿</span>
+ *   <span class="ax-badge" data-tone="accent">进行中</span>
+ *   <span class="ax-badge" data-tone="success"><i class="ax-dot"></i>完成</span>
+ *   data-tone: neutral（默认）| accent | success | warning | danger
+ *
+ * 圆点
+ *   <i class="ax-dot"></i>            普通
+ *   <i class="ax-dot" data-lit></i>   亮起：夜里会发光
+ */
+
+:where(.ax-theme) .ax-badge {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ax-space-1);
+  height: var(--ax-size-control-sm);
+  padding: 0 var(--ax-space-2);
+  border: 1px solid var(--ax-color-border-default);
+  border-radius: var(--ax-radius-md);
+  color: var(--ax-color-text-muted);
+  font-size: var(--ax-font-size-xs);
+  font-weight: var(--ax-font-weight-medium);
+  white-space: nowrap;
+}
+:where(.ax-theme) .ax-badge[data-tone="accent"] {
+  background: var(--ax-color-accent-subtle);
+  border-color: transparent;
+  color: var(--ax-color-accent-text);
+}
+:where(.ax-theme) .ax-badge[data-tone="success"] { color: var(--ax-color-success); }
+:where(.ax-theme) .ax-badge[data-tone="warning"] { color: var(--ax-color-warning); }
+:where(.ax-theme) .ax-badge[data-tone="danger"]  { color: var(--ax-color-danger); }
+:where(.ax-theme) .ax-badge .ax-dot { width: 6px; height: 6px; background: currentColor; }
+
+:where(.ax-theme) .ax-dot {
+  display: inline-block;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--ax-radius-full);
+  background: var(--ax-color-border-strong);
+}
+:where(.ax-theme) .ax-dot[data-lit] {
+  background: var(--ax-color-accent-default);
+  box-shadow: var(--ax-shadow-glow);
+}
+
+/*
+ * 键盘按键
+ *   <kbd class="ax-kbd">⌘ K</kbd>
+ */
+:where(.ax-theme) .ax-kbd {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--ax-space-1);
+  border: 1px solid var(--ax-color-border-default);
+  border-bottom-width: 2px;
+  border-radius: var(--ax-radius-md);
+  background: var(--ax-color-bg-subtle);
+  color: var(--ax-color-text-muted);
+  font-family: var(--ax-font-family-mono);
+  font-size: var(--ax-font-size-xs);
+}
+
+/* ==== surface ==== */
+/*
+ * 卡片
+ *   <div class="ax-card">…</div>
+ */
+:where(.ax-theme) .ax-card {
+  padding: var(--ax-space-5);
+  border: 1px solid var(--ax-color-border-default);
+  border-radius: var(--ax-radius-lg);
+  background: var(--ax-color-surface-default);
+  box-shadow: var(--ax-shadow-sm), var(--ax-shadow-edge);
+}
+
+/*
+ * 列表
+ *   <div class="ax-list">
+ *     <div class="ax-list-header">标题</div>
+ *     <div class="ax-list-item" aria-selected="true">…</div>
+ *   </div>
+ */
+:where(.ax-theme) .ax-list {
+  overflow: hidden;
+  border: 1px solid var(--ax-color-border-default);
+  border-radius: var(--ax-radius-lg);
+  background: var(--ax-color-surface-default);
+  box-shadow: var(--ax-shadow-sm), var(--ax-shadow-edge);
+}
+:where(.ax-theme) .ax-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ax-space-3);
+  padding: var(--ax-space-2) var(--ax-space-4);
+  border-bottom: 1px solid var(--ax-color-border-default);
+  background: var(--ax-color-bg-subtle);
+  font-size: var(--ax-font-size-sm);
+  font-weight: var(--ax-font-weight-semibold);
+}
+:where(.ax-theme) .ax-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ax-space-3);
+  height: 40px;
+  padding: 0 var(--ax-space-4);
+  border-bottom: 1px solid var(--ax-color-border-default);
+  transition: background-color var(--ax-motion-duration-fast) var(--ax-motion-easing-standard);
+}
+:where(.ax-theme) .ax-list-item:last-child { border-bottom: 0; }
+:where(.ax-theme) .ax-list-item:hover { background: var(--ax-color-state-hover); }
+:where(.ax-theme) .ax-list-item[aria-selected="true"] {
+  background: var(--ax-color-accent-subtle);
+  box-shadow: inset 2px 0 0 var(--ax-color-accent-default), var(--ax-shadow-lit-row);
+}
+:where(.ax-theme) .ax-list-item > :first-child + * { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/*
+ * 对话框：使用原生 <dialog>，自带焦点管理和 Esc 关闭
+ *   <dialog class="ax-dialog">
+ *     <h2 class="ax-dialog-title">标题</h2>
+ *     <p class="ax-dialog-body">内容</p>
+ *     <div class="ax-dialog-actions">按钮</div>
+ *   </dialog>
+ *   打开：dialog.showModal()
+ */
+
+}

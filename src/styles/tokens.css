@@ -1,0 +1,178 @@
+/* Scoped from the read-only Arinox Fusion reference. */
+/**
+ * Arinox · 夜明
+ * 由 tokens/ 自动生成，请勿直接编辑。修改 token 后运行 npm run build。
+ */
+
+/* ---- 基础 ---- */
+.ax-theme {
+  --ax-font-family-display: 'Newsreader Variable', 'Noto Serif SC Variable', 'Source Han Serif SC', 'Songti SC', serif; /** 说话的声音。只用于 20px 及以上的标题和品牌时刻 */
+  --ax-font-family-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei UI', sans-serif; /** 做事的声音。所有界面控件、正文、列表 */
+  --ax-font-family-mono: 'JetBrains Mono Variable', 'Cascadia Code', Consolas, monospace; /** 度量的声音。数字、时间、编号、代码 */
+  --ax-font-weight-regular: 400;
+  --ax-font-weight-medium: 500;
+  --ax-font-weight-semibold: 600;
+  --ax-font-weight-display: 500; /** Newsreader 在 500 时最沉静；更粗会失去月光感 */
+  --ax-font-size-xs: 12px;
+  --ax-font-size-sm: 13px;
+  --ax-font-size-base: 14px;
+  --ax-font-size-md: 16px;
+  --ax-font-size-lg: 20px;
+  --ax-font-size-xl: 24px;
+  --ax-font-size-2xl: 32px;
+  --ax-font-size-3xl: 48px;
+  --ax-font-line-height-tight: 1.2; /** 大标题 */
+  --ax-font-line-height-snug: 1.35; /** 小标题、单行控件 */
+  --ax-font-line-height-normal: 1.5; /** 界面文字 */
+  --ax-font-line-height-relaxed: 1.7; /** 中文长段落 */
+  --ax-font-tracking-display: -0.015em; /** 大字号收紧字距 */
+  --ax-font-tracking-caps: 0.08em; /** 全大写的小标签放宽字距 */
+  --ax-space-0: 0px;
+  --ax-space-1: 4px;
+  --ax-space-2: 8px;
+  --ax-space-3: 12px;
+  --ax-space-4: 16px;
+  --ax-space-5: 20px;
+  --ax-space-6: 24px;
+  --ax-space-8: 32px;
+  --ax-space-10: 40px;
+  --ax-space-12: 48px;
+  --ax-space-16: 64px;
+  --ax-radius-sm: 4px; /** 只用于复选框这类 16px 的小方块：8px 会让它变成圆形，和单选框分不清 */
+  --ax-radius-md: 8px; /** 所有控件：按钮（含小按钮）、输入框、徽标、菜单项 */
+  --ax-radius-lg: 12px; /** 卡片、对话框、浮层、窗口 */
+  --ax-radius-full: 9999px; /** 圆点、开关 */
+  --ax-size-control-sm: 24px;
+  --ax-size-control-md: 32px;
+  --ax-size-control-lg: 40px;
+  --ax-motion-duration-fast: 120ms; /** 悬停、按下 */
+  --ax-motion-duration-base: 200ms; /** 展开、切换 */
+  --ax-motion-duration-slow: 320ms; /** 对话框、页面过渡 */
+  --ax-motion-duration-dawn: 900ms; /** 品牌时刻：光从地平线升起。只用于启动、空状态这类少见的场合 */
+  --ax-motion-stagger: 60ms; /** 一组元素依次出现时，相邻两个之间的间隔 */
+  --ax-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1); /** 大部分动效 */
+  --ax-motion-easing-enter: cubic-bezier(0, 0, 0.2, 1); /** 元素进入，像光慢慢亮起 */
+  --ax-motion-easing-exit: cubic-bezier(0.4, 0, 1, 1); /** 元素离开 */
+}
+
+/* ---- 昼 · Akira（默认） ---- */
+.ax-theme {
+  --ax-color-bg-default: #fdfaf4; /** 应用的底色 */
+  --ax-color-bg-subtle: #f8f5ef; /** 侧边栏、标题栏 */
+  --ax-color-surface-default: #ffffff; /** 卡片、窗口、输入框 */
+  --ax-color-surface-raised: #ffffff; /** 浮层、次要按钮 */
+  --ax-color-border-default: #e6e2dd;
+  --ax-color-border-strong: #d4d0cb; /** 输入框、次要按钮的边框 */
+  --ax-color-text-default: #181612;
+  --ax-color-text-muted: #5d5a56; /** 次要文字，对比度 ≥ 4.5 */
+  --ax-color-text-subtle: #77746f; /** 辅助文字、占位符，只用于非关键信息 */
+  --ax-color-state-hover: rgba(102, 99, 94, 0.05);
+  --ax-color-state-selected: rgba(102, 99, 94, 0.08);
+  --ax-color-accent-default: #036eae; /** 光。一屏只出现一处主要用法 */
+  --ax-color-accent-hover: #005f9e;
+  --ax-color-accent-fg: #ffffff; /** 放在 accent 上的文字 */
+  --ax-color-accent-subtle: #e3f5ff; /** 选中行、强调徽标的底色 */
+  --ax-color-accent-text: #036eae; /** 链接、强调文字 */
+  --ax-color-focus-ring: rgba(3, 110, 174, 0.3);
+  --ax-color-control-track: #b4b1ab; /** 开关关闭时的轨道 */
+  --ax-color-control-thumb: #ffffff; /** 开关关闭时的滑块；打开时使用 accent-fg */
+  --ax-color-backdrop: rgba(24, 22, 17, 0.32); /** 对话框后面的遮罩 */
+  --ax-color-success: #0a7e3a;
+  --ax-color-warning: #a75c00;
+  --ax-color-danger: #d02b31;
+  --ax-color-chart-1: #036eae; /** 月光蓝 */
+  --ax-color-chart-2: #247261; /** 青绿 */
+  --ax-color-chart-3: #7457a3; /** 紫 */
+  --ax-color-chart-4: #8b6911; /** 金 */
+  --ax-color-chart-5: #a0446d; /** 玫瑰 */
+  --ax-color-danger-fg: #ffffff;
+  --ax-shadow-sm: 0px 1px 2px 0px rgb(0% 0% 0% / 0.06);
+  --ax-shadow-md: 0px 4px 12px -2px rgb(0% 0% 0% / 0.09), 0px 2px 4px -2px rgb(0% 0% 0% / 0.06);
+  --ax-shadow-lg: 0px 16px 40px -12px rgb(0% 0% 0% / 0.12), 0px 4px 12px -4px rgb(0% 0% 0% / 0.05);
+  --ax-shadow-edge: 0px 1px 1px 0px rgb(0% 0% 0% / 0.03); /** 表面的边缘。白昼是一道极浅的投影 */
+  --ax-shadow-glow: 0px 1px 2px 0px rgb(0% 0% 0% / 0.08); /** 主要按钮。白昼不需要发光，只是一道普通的投影 */
+  --ax-shadow-lit: 0px 0px 0px 0px rgb(0% 0% 0% / 0); /** 白昼不发光，焦点只靠光环 */
+  --ax-shadow-lit-row: inset 0px 0px 0px 0px rgb(0% 0% 0% / 0); /** 白昼不发光，选中只靠底色和左侧的光条 */
+}
+
+/* ---- 夜 · Nyx（手动） ---- */
+.ax-theme[data-theme="night"] {
+  --ax-color-bg-default: #070a12; /** 应用的底色 */
+  --ax-color-bg-subtle: #0b0e16; /** 侧边栏、标题栏 */
+  --ax-color-surface-default: #0f121b; /** 卡片、窗口、输入框 */
+  --ax-color-surface-raised: #181c24; /** 浮层、次要按钮。夜里越靠近用户的表面越亮 */
+  --ax-color-border-default: #21252e;
+  --ax-color-border-strong: #31353f; /** 输入框、次要按钮的边框 */
+  --ax-color-text-default: #e9eefb;
+  --ax-color-text-muted: #a3a8b3; /** 次要文字，对比度 ≥ 4.5 */
+  --ax-color-text-subtle: #818691; /** 辅助文字、占位符，只用于非关键信息 */
+  --ax-color-state-hover: rgba(217, 222, 234, 0.05);
+  --ax-color-state-selected: rgba(217, 222, 234, 0.08);
+  --ax-color-accent-default: #8dceee; /** 光。一屏只出现一处主要用法 */
+  --ax-color-accent-hover: #9ddfff;
+  --ax-color-accent-fg: #070a12; /** 夜里的光很亮，上面的文字要用深色 */
+  --ax-color-accent-subtle: #152631; /** 选中行、强调徽标的底色 */
+  --ax-color-accent-text: #8dceee; /** 链接、强调文字 */
+  --ax-color-focus-ring: rgba(141, 206, 238, 0.3);
+  --ax-color-control-track: #31353f; /** 开关关闭时的轨道 */
+  --ax-color-control-thumb: #e9eefb; /** 开关关闭时的滑块；打开时使用 accent-fg */
+  --ax-color-backdrop: rgba(0, 0, 1, 0.6); /** 对话框后面的遮罩。夜里更深 */
+  --ax-color-success: #5ac576;
+  --ax-color-warning: #f2af48;
+  --ax-color-danger: #f75d59;
+  --ax-color-chart-1: #67b5e1; /** 月光蓝 */
+  --ax-color-chart-2: #62b7a1; /** 青绿 */
+  --ax-color-chart-3: #b49ce1; /** 紫 */
+  --ax-color-chart-4: #ceac64; /** 金 */
+  --ax-color-chart-5: #dd90ae; /** 玫瑰 */
+  --ax-color-danger-fg: #070a12;
+  --ax-shadow-sm: 0px 1px 2px 0px rgb(0% 0% 0% / 0.4);
+  --ax-shadow-md: 0px 4px 12px -2px rgb(0% 0% 0% / 0.5), 0px 2px 4px -2px rgb(0% 0% 0% / 0.4);
+  --ax-shadow-lg: 0px 20px 50px -12px rgb(0% 0% 0% / 0.7), 0px 4px 12px -4px rgb(0% 0% 0% / 0.4);
+  --ax-shadow-edge: 0px 1px 2px 0px rgb(0% 0% 0% / 0.3); /** 表面的边缘。夜里是一道向下的暗影 */
+  --ax-shadow-glow: 0px 4px 18px -4px oklch(82% 0.08 230 / 0.55); /** 主要按钮。夜里，光会发光。只用模糊的光，不画 1px 的硬边：半透明的硬边叠在不同背景上会变成暗边 */
+  --ax-shadow-lit: 0px 0px 16px 0px oklch(82% 0.08 230 / 0.35); /** 月光：获得焦点的控件周围的一圈柔光 */
+  --ax-shadow-lit-row: inset 16px 0px 20px -16px oklch(82% 0.08 230 / 0.45); /** 月光：选中行从左侧光条向右散开的柔光 */
+}
+
+/* ---- 夜 · Nyx（跟随系统） ---- */
+@media (prefers-color-scheme: dark) {
+  .ax-theme:not([data-theme="day"]) {
+    --ax-color-bg-default: #070a12; /** 应用的底色 */
+    --ax-color-bg-subtle: #0b0e16; /** 侧边栏、标题栏 */
+    --ax-color-surface-default: #0f121b; /** 卡片、窗口、输入框 */
+    --ax-color-surface-raised: #181c24; /** 浮层、次要按钮。夜里越靠近用户的表面越亮 */
+    --ax-color-border-default: #21252e;
+    --ax-color-border-strong: #31353f; /** 输入框、次要按钮的边框 */
+    --ax-color-text-default: #e9eefb;
+    --ax-color-text-muted: #a3a8b3; /** 次要文字，对比度 ≥ 4.5 */
+    --ax-color-text-subtle: #818691; /** 辅助文字、占位符，只用于非关键信息 */
+    --ax-color-state-hover: rgba(217, 222, 234, 0.05);
+    --ax-color-state-selected: rgba(217, 222, 234, 0.08);
+    --ax-color-accent-default: #8dceee; /** 光。一屏只出现一处主要用法 */
+    --ax-color-accent-hover: #9ddfff;
+    --ax-color-accent-fg: #070a12; /** 夜里的光很亮，上面的文字要用深色 */
+    --ax-color-accent-subtle: #152631; /** 选中行、强调徽标的底色 */
+    --ax-color-accent-text: #8dceee; /** 链接、强调文字 */
+    --ax-color-focus-ring: rgba(141, 206, 238, 0.3);
+    --ax-color-control-track: #31353f; /** 开关关闭时的轨道 */
+    --ax-color-control-thumb: #e9eefb; /** 开关关闭时的滑块；打开时使用 accent-fg */
+    --ax-color-backdrop: rgba(0, 0, 1, 0.6); /** 对话框后面的遮罩。夜里更深 */
+    --ax-color-success: #5ac576;
+    --ax-color-warning: #f2af48;
+    --ax-color-danger: #f75d59;
+    --ax-color-chart-1: #67b5e1; /** 月光蓝 */
+    --ax-color-chart-2: #62b7a1; /** 青绿 */
+    --ax-color-chart-3: #b49ce1; /** 紫 */
+    --ax-color-chart-4: #ceac64; /** 金 */
+    --ax-color-chart-5: #dd90ae; /** 玫瑰 */
+    --ax-color-danger-fg: #070a12;
+    --ax-shadow-sm: 0px 1px 2px 0px rgb(0% 0% 0% / 0.4);
+    --ax-shadow-md: 0px 4px 12px -2px rgb(0% 0% 0% / 0.5), 0px 2px 4px -2px rgb(0% 0% 0% / 0.4);
+    --ax-shadow-lg: 0px 20px 50px -12px rgb(0% 0% 0% / 0.7), 0px 4px 12px -4px rgb(0% 0% 0% / 0.4);
+    --ax-shadow-edge: 0px 1px 2px 0px rgb(0% 0% 0% / 0.3); /** 表面的边缘。夜里是一道向下的暗影 */
+    --ax-shadow-glow: 0px 4px 18px -4px oklch(82% 0.08 230 / 0.55); /** 主要按钮。夜里，光会发光。只用模糊的光，不画 1px 的硬边：半透明的硬边叠在不同背景上会变成暗边 */
+    --ax-shadow-lit: 0px 0px 16px 0px oklch(82% 0.08 230 / 0.35); /** 月光：获得焦点的控件周围的一圈柔光 */
+    --ax-shadow-lit-row: inset 16px 0px 20px -16px oklch(82% 0.08 230 / 0.45); /** 月光：选中行从左侧光条向右散开的柔光 */
+  }
+}
