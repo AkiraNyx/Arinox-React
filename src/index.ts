@@ -14,7 +14,7 @@ export { Menu, MenuItem } from './components/Menu.js';
 export type { MenuProps, MenuItemProps, MenuTriggerProps } from './components/Menu.js';
 export { Dialog } from './components/Dialog.js';
 export type { DialogProps, DialogControls, DialogTriggerProps } from './components/Dialog.js';
-export { useReducedMotion, useLayoutTransition } from './motion.js';
+export { useReducedMotion, useLayoutTransition, motionTokens } from './motion.js';
 export type { MotionPhase } from './motion.js';
 export { SegmentedControl } from './components/SegmentedControl.js';
 export type { SegmentOption, SegmentedControlProps } from './components/SegmentedControl.js';

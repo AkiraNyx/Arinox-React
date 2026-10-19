@@ -35,7 +35,7 @@ import '@arinox/react/styles.css';
 </Theme>
 ```
 
-跨项目本地安装可先 `npm run build:lib`，再 `npm pack --pack-destination checks`，在目标 React 19 项目安装生成的 `arinox-react-0.1.0.tgz`。这只是本地打包，不发布 npm；包本身为 private。
+跨项目本地安装可先 `npm run build:lib`，再 `npm pack --pack-destination checks`，在目标 React 19 项目安装生成的 `arinox-react-0.1.1.tgz`。这只是本地打包，不发布 npm；包本身为 private。
 
 | 组件 | 主要 API |
 | --- | --- |
@@ -46,7 +46,7 @@ import '@arinox/react/styles.css';
 | Field | `label`、`htmlFor`、`hint/error`；消息 id 为 `htmlFor + '-help'`，由输入的 aria-describedby 关联 |
 | Tabs | `label`、`items=[{value,label,content,disabled}]`，`value/onValueChange` 或 `defaultValue`；一个 Tab 入口、左右/Home/End 导航，面板保留挂载 |
 | Menu / MenuItem | `trigger(props)` 保留 ref/事件/aria 属性，`open/onOpenChange` 或 `defaultOpen`；MenuItem `onSelect`、disabled 及原生按钮属性 |
-| Dialog | `open/onOpenChange` 或 `defaultOpen + trigger`，`initialFocusRef`、`returnFocus()`、`onAfterClose`；children 可接收 `{close,phase}` |
+| Dialog | `open/onOpenChange` 或 `defaultOpen + trigger`，`initialFocusRef`、`returnFocus()`、`onAfterClose`；children 可接收 `{close,phase}`。默认 `modal=true` 使用原生模态；`modal=false` 使用原生非顶层对话框，背景隔离与键盘模态边界由接入应用负责 |
 | Card / Glass / Stack / Inline | 原生 article/div 属性与 ref；Card 的 surface、布局 gap 来自间距 token |
 | SegmentedControl | 工作台复用的按钮组；`label/options`、`value/onValueChange` 或 defaultValue、pill/underline 外观 |
 | Icon | 原图标几何，`name` 联合类型与 SVG 属性；默认装饰性，独立图标按钮由按钮提供名称 |
@@ -82,6 +82,8 @@ import '@arinox/react/styles.css';
 CSS 负责颜色、焦点、按压和独立加载伪元素；Anime.js 负责浮层 opacity/transform、选择指示的几何和布局位置。不要在同一动画目标上再添加自定义 opacity/transform 动画。`useLayoutTransition(ref)` 返回包裹状态更新的函数，跟踪带 `data-ax-layout-item` 的稳定项目身份。
 
 嵌套浮层沿用最近的 Dialog 宿主，保持原生模态焦点关系；菜单在支持 [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using) 时使用手动 top layer，定位不受祖先 transform 裁切，开关仍由 React 与 Anime 生命周期管理。旧浏览器退回普通 fixed 菜单，复杂嵌套/变换容器需另行验证。
+
+应用专用组合可以通过公共入口调用 `motionTokens(element)` 读取当前主题的时长与曲线，并使用 `useReducedMotion()` 跟随运行期间偏好变化；为 Anime 创建 scope，在中断和卸载时取消并 revert。不要让 CSS 和 Anime 同时动画同一属性。
 
 元素规则限制在 `.ax-theme` 内，示例的 body 布局不进入库。字体和命名自定义属性仍是 CSS 的全局注册，库不是 Shadow DOM 隔离。原生选择框在支持 `appearance: base-select` 的浏览器增强 16px 浮层，其他浏览器保留原生外观。
 
