@@ -10,10 +10,27 @@
 <p align="center">给 React 19 用的组件层。样式、主题与动效一起交付，不是一组无样式控件。</p>
 
 <p align="center">
-  <code>@arinox/react</code> 0.1.1 · GPL-3.0-only · React 19 / TypeScript 7 / Vite 8 / Anime.js 4
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--only-8F7CFF?style=flat-square" alt="GPL-3.0-only"></a>
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React 19">
+  <img src="https://img.shields.io/badge/build-ESM%20only-2b2930?style=flat-square" alt="ESM only">
 </p>
 
-> 当前是本地私有包（`private: true`），未发布 npm，通过 `npm pack` 安装。
+<p align="center">
+  <code>@arinox/react</code> 0.1.1 · TypeScript 7 / Vite 8 / Anime.js 4
+</p>
+
+<p align="center">
+  <a href="#这是什么">这是什么</a> ·
+  <a href="#组件">组件</a> ·
+  <a href="#安装">安装</a> ·
+  <a href="#使用">使用</a> ·
+  <a href="#组件-api">组件 API</a> ·
+  <a href="#开发">开发</a> ·
+  <a href="#已知限制">已知限制</a>
+</p>
+
+> [!IMPORTANT]
+> 本地私有包（`private: true`），没有 npm registry 入口。安装走 [本地打包](#安装)，不经过 `npm install @arinox/react`。
 
 ## 这是什么
 
