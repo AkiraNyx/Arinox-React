@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="arinox-night" x1="20" y1="14" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2F6FF"/>
+      <stop offset="1" stop-color="#AFC6EA"/>
+    </linearGradient>
+    <mask id="arinox-night-cut" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="64" height="64" style="mask-type:luminance">
+      <rect width="64" height="64" fill="#fff"/>
+      <path fill="#000" d="M23.6 39.6 42.4 20.8h5.8L29.4 39.6h-5.8Z"/>
+    </mask>
+  </defs>
+  <path fill="url(#arinox-night)" mask="url(#arinox-night-cut)" d="M13.2 47 32 12l19.4 35h-9.7L32 28 22.2 47h-9Z"/>
+</svg>
