@@ -15,7 +15,9 @@
   <img src="https://img.shields.io/badge/build-ESM%20only-2b2930?style=flat-square" alt="ESM only">
 </p>
 
-`@arinox/react` 0.1.1 · 18 个组件 · TypeScript 7 / Vite 8 / Anime.js 4
+<p align="center">
+  <code>@arinox/react</code> 0.1.1 · 18 个组件 · TypeScript 7 / Vite 8 / Anime.js 4
+</p>
 
 > [!IMPORTANT]
 > 私有包（`private: true`），没有 registry 入口。装它走本地打包，`npm install @arinox/react` 会返回 404。
